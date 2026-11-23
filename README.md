@@ -1,2 +1,9 @@
-# claude-course-notes
-Short notes from Claude courses, one file per topic.
+# Claude course notes
+
+Short notes, one file per topic.
+
+## Claude Code in Action
+
+- [Long sessions](claude-code-in-action/long-sessions.md)
+- [CLAUDE.md](claude-code-in-action/claude-md.md)
+- [Verification skills](claude-code-in-action/verification-skills.md)
