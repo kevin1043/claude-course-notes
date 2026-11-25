@@ -1,40 +1,36 @@
 # Permission modes
 
-Permission modes set how much Claude Code may do on your machine before asking. They are not Cursor Auto or Cost.
+How much Claude Code may do before asking. Not Cursor Auto or Cost.
+
+| Mode | Reads | Edits | Bash | Asks you | Use when |
+| --- | --- | --- | --- | --- | --- |
+| Manual | yes | ask | ask | always, except reads | learning |
+| Accept edits | yes | yes | common yes | unusual commands | daily coding |
+| Plan | yes | no | explore if classifier ok | before any real change | design first |
+| Auto | yes | yes | yes if classifier ok | rarely | trusted repo, you are watching |
+| Don't ask | workspace only | only if pre-approved | only pre-approved | never, deny instead | CI or a locked agent |
+| Bypass | everything | everything | everything | never | isolated agent VM only |
 
 ## Manual
 
-Reads go through. Edits, bash, network, and installs ask every time. You allow or deny each action. Slowest, safest while you learn.
+Reads go. Edits, bash, network, and installs ask every time.
 
 ## Accept edits
 
-Reads, file edits, and common local bash (`ls`, tests, `git status`, maybe `npm test`) run without asking. You review the diff after. Odd or risky commands still prompt. Default for writing code you will review.
+Reads, edits, and common local bash (`ls`, tests, `git status`, maybe `npm test`) run. Review the diff after. Odd commands still prompt.
 
 ## Plan
 
-No edits. Claude reads and proposes a plan. Explore commands a classifier approves can run. It does not apply the change until you leave Plan. Use this before a big refactor.
+No edits. It reads and proposes a plan. Approved explore commands can run. Nothing is applied until you leave Plan.
 
 ## Auto
 
-Default yes to almost everything. A second classifier looks at each action, especially bash, and can still block or ask if it looks dangerous (`rm -rf`, `curl | sh`, secrets). Faster. You trust the classifier, not a click each time.
+Default yes. A classifier can still block or ask on dangerous bash (`rm -rf`, `curl | sh`, secrets).
 
 ## Don't ask
 
-Reads in your project dirs and pre-approved tools only. Anything that would have prompted is denied, with no popup. It cannot widen permissions by asking you.
+Project reads and pre-approved tools only. Anything else is denied. No popup, so it cannot ask for more.
 
 ## Bypass permissions
 
-No checks. Same as `--dangerously-skip-permissions`. Full shell. Only in a throwaway VM or container, never on a laptop with prod credentials.
-
-## What runs
-
-| Mode | Reads | Edits | Bash | Asks you |
-| --- | --- | --- | --- | --- |
-| Manual | yes | ask | ask | always, except reads |
-| Accept edits | yes | yes | common yes | unusual commands |
-| Plan | yes | no | explore if classifier ok | before any real change |
-| Auto | yes | yes | yes if classifier ok | rarely |
-| Don't ask | workspace only | only if pre-approved | only pre-approved | never, deny instead |
-| Bypass | everything | everything | everything | never |
-
-Pick by blast radius. Learning: Manual. Daily coding: Accept edits. Design first: Plan. Trusted repo while you watch: Auto. CI or a locked agent: Don't ask. Isolated agent VM: Bypass.
+No checks. Same as `--dangerously-skip-permissions`. Throwaway VM or container only, never a laptop with prod credentials.
