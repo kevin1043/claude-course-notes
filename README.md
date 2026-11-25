@@ -7,3 +7,4 @@ Short notes, one file per topic.
 - [Long sessions](claude-code-in-action/long-sessions.md)
 - [CLAUDE.md](claude-code-in-action/claude-md.md)
 - [Verification skills](claude-code-in-action/verification-skills.md)
+- [Permission modes](claude-code-in-action/permission-modes.md)
